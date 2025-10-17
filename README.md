@@ -1,28 +1,14 @@
-# Project Name
-Put here a short paragraph describing your project. 
-Adding an screenshot or a mockup of your application in action would be nice.  
+# CarePlus
+CarePlus is a user-friendly health insurance system designed to help individuals easily determine their eligibility for government or private healthcare plans such as Medicaid, SNAP, CCAP, Medicare, and QHP.  
+The platform simplifies the process of checking eligibility, registering for plans, tracking premium payments, and submitting claims — all in one place.  
 
 ![This is a screenshot.](images.png)
-# How to run
-Provide here instructions on how to use your application.   
-- Download the latest binary from the Release section on the right on GitHub.  
-- On the command line uncompress using
-```
-tar -xzf  
-```
-- On the command line run with
-```
-./hello
-```
-- You will see Hello World! on your terminal. 
+# Installation instructions
+- Make sure you have Java 17 or higher installed
+- git clone https://github.com/cis3296f25/03-careplus.git
+- Open the project in your preferred IDE (VS Code, IntelliJ, etc.)
 
-# How to contribute
-Follow this project board to know the latest status of the project: [http://...]([http://...])  
 
 ### How to build
-- Use this github repository: ... 
-- Specify what branch to use for a more stable release or for cutting edge development.  
-- Use InteliJ 11
-- Specify additional library to download if needed 
-- What file and target to compile and run. 
-- What is expected to happen when the app start. 
+- Clone this GitHub repository: https://github.com/cis3296f25/03-careplus.git
+  
