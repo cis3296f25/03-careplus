@@ -22,6 +22,7 @@ import jakarta.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 public class USCitizenApplicationRegistrationEntity {
+	#here main entity class
 	@Id
 	@SequenceGenerator(name="genSeq", sequenceName="App_ID", initialValue=1000, allocationSize =1)
 	@GeneratedValue(generator="genSeq",strategy=GenerationType.SEQUENCE)
