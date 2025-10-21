@@ -1,28 +1,27 @@
-# Project Name
-Put here a short paragraph describing your project. 
-Adding an screenshot or a mockup of your application in action would be nice.  
+# CarePlus
+CarePlus is a Health Insurance Information System designed to make healthcare access easier and more efficient. It allows citizens to register for insurance plans, check eligibility, submit claims, and track benefits online. The system also enables administrators and case workers to manage plans, process applications, and generate reports.  
 
-![This is a screenshot.](images.png)
+![This is a screenshot.](CareplusLogo.png)
 # How to run
-Provide here instructions on how to use your application.   
-- Download the latest binary from the Release section on the right on GitHub.  
-- On the command line uncompress using
+- Make sure you have Java (JDK 17 or later) installed.
+- Open a terminal in the project directory.
+- Compile the main file:
 ```
-tar -xzf  
+javac CarePlusMain.java  
 ```
-- On the command line run with
+- run the program
 ```
-./hello
+java CarePlusMain
 ```
-- You will see Hello World! on your terminal. 
+- you will see
 
-# How to contribute
-Follow this project board to know the latest status of the project: [http://...]([http://...])  
+```
+Welcome to CarePlus - Health Insurance System
+```
 
 ### How to build
-- Use this github repository: ... 
-- Specify what branch to use for a more stable release or for cutting edge development.  
-- Use InteliJ 11
-- Specify additional library to download if needed 
-- What file and target to compile and run. 
-- What is expected to happen when the app start. 
+- Clone the repo
+```
+git clone https://github.com/cis3296f25/03-careplus.git
+```
+
