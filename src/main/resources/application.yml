@@ -1,0 +1,23 @@
+server:
+  port: 8081
+  undertow:
+    decode-url: false   # or true, depending on what you need
+
+spring:
+  application:
+    name: CarePlus-ApplicationRegistration
+  datasource:
+    url: jdbc:mysql:///jrtq2025-his-db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+ar:
+  apiUrl:
+    url: http://localhost:9091/SsaWebOperation/find/{ssn}
+state: Pennsylvania
