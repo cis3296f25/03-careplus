@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class CarePlusApplicationRegistrationApplication {
-	#This is a method that creates and returns an object of type RestTemplate.
+	//This is a method that creates and returns an object of type RestTemplate.
 	@Bean 
 	public RestTemplate createTemplate() {
 		return new RestTemplate();
