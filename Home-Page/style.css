@@ -138,6 +138,19 @@ header{
     font-size: 1.7rem;
     color: white; 
 }
+.external-icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-left: 6px;
+    filter: invert(1); 
+    transition: transform 0.2s ease;
+}
+
+.external-icon:hover {
+    transform: scale(1.2);
+}
+
 
 
 .home .home-right-content{
@@ -160,7 +173,7 @@ header{
   border-radius: 80px; /* rounded corners */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
   margin: 50px auto; /* some space around it */
-  width: 100%; /* keeps it centered with margins */
+  width: 100%; 
 }
 .row{
   display: flex;
@@ -196,11 +209,38 @@ header{
 
 /*This is for the reasons*/
 
-.reason{
+.reason {
     margin-top: 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 2rem;
+    flex-wrap: wrap; /* makes it responsive */
+    padding: 2rem 5%;
 }
-.reason-one{
-    margin-left: 5%;
+.reason-one, .reason-two, .reason-three {
+    background-color: #f8fdf9; 
+    border: 1px solid #dce9dc;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+    width: 28%;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reason-one:hover, .reason-two:hover, .reason-three:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.reason h2 {
+    font-size: 2rem;
+    color: #2a5c37;
+    margin-bottom: 0.8rem;
+}
+.reason p {
+    font-size: 1.5rem;
+    color: #444;
+    line-height: 1.5;
 }
