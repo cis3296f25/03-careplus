@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="RegistrationStyle.css">
+
+</head>
+
+<body>
+
+  <div class="form-container">
+    <div class="progress-bar">
+      <div class="progress-step active" id="step1"></div>
+      <div class="progress-step" id="step2"></div>
+      <div class="progress-step" id="step3"></div>
+    </div>
+
+    <div class="Registration-Text">
+      <h1>Registration Form</h1>
+    </div>
+
+
+    <!-- Step 1 -->
+    <div class="form-step active" id="form-step-1">
+      <h3>Personal Information</h3>
+      <label>Full Name</label>
+      <input type="text" id="fullName">
+
+      <label>Gender</label>
+      <select id="gender">
+        <option value="">Select Gender</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+      </select>
+
+      <label>Date of Birth</label>
+      <input type="date" id="dob">
+
+      <div class="btns">
+        <span></span>
+        <button onclick="nextStep(1)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="form-step" id="form-step-2">
+      <h3>Contact Details</h3>
+      <label>Email</label>
+      <input type="email" id="email">
+
+      <label>Mobile Number</label>
+      <input type="text" id="mobileNum" placeholder="9876543211">
+
+      <label>State</label>
+      <select id="state">
+        <option value="">Select State</option>
+        <option value="Delaware">Delaware</option>
+        <option value="Pennsylvania">Pennsylvania</option>
+        <option value="New York">New York</option>
+      </select>
+
+      <div class="btns">
+        <button onclick="prevStep(1)">Back</button>
+        <button onclick="nextStep(2)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="form-step" id="form-step-3">
+      <h3>Identity Verification</h3>
+      <label>SSN</label>
+      <input type="text" id="ssn" placeholder="123-45-6789">
+
+      <label><input type="checkbox" id="confirm"> I confirm that my information is accurate</label>
+
+      <div class="btns">
+        <button onclick="prevStep(2)">Back</button>
+        <button onclick="submitForm()">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="registrationScript.js"></script>
+</body>
+</html>
