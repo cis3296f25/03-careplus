@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #557055;
+  background-color: #9bc29b;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,7 +34,7 @@ body {
   background: #d3d3d3;
 }
 .progress-step.active {
-  background: #6AA854;
+  background: #54a85e;
 }
 .form-step {
   display: none;

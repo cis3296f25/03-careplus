@@ -1,12 +1,13 @@
 .join-section {
-    background: linear-gradient(90deg,rgba(204, 235, 220, 1) 0%, rgba(165, 196, 173, 1) 100%, rgba(233, 241, 245, 1) 100%);
+    background: url(images/JoinUsCover.png);
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: right;
+    text-align: right;
     color: #1B3C0B;
     font-family: "Poppins", sans-serif;
+    padding-right: 100px;
 }
 
 

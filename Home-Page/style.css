@@ -3,7 +3,7 @@
     height: 100vh;
     background: 
         url(Images/cover.png),
-        linear-gradient(90deg, rgba(204, 235, 220, 1) 0%, rgba(165, 196, 173, 1) 100%, rgba(233, 241, 245, 1) 100%);
+        linear-gradient(90deg, rgb(200, 213, 206) 0%, rgb(118, 172, 134) 100%, rgb(176, 217, 191) 100%);
     background-size: cover;
     background-position: 90% center;
     background-repeat: no-repeat;
