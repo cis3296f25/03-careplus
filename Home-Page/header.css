@@ -1,0 +1,104 @@
+:root { 
+    --maincolor: #2ec8a6; 
+    --secondcolor: #f8a803; 
+    --thirdcolor: #f4ab01; 
+    --textcolor: #4a5764; 
+    --fourthcolor: #1B3C0B; 
+} 
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    outline: none; 
+    border: none; 
+    text-decoration: none; 
+    text-transform: capitalize; 
+    transition: all .2s linear; 
+} 
+
+html { 
+    font-size: 62.5%; 
+    overflow-x: hidden; 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 6rem; 
+} 
+
+header { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0rem 7%; 
+    width: 100%; 
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1); 
+    z-index: 1000; 
+    background-color: rgb(255, 255, 255); 
+} 
+
+.logo { 
+    width: 150px; 
+    margin-left: -70px;
+} 
+
+.logo img { 
+    width: 100%; 
+} 
+
+.navbar a { 
+    color: var(--textcolor); 
+    font-size: 1.7rem; 
+    margin: 1rem; 
+    position: relative; 
+    transition: 0.5s; 
+} 
+
+.navbar a:hover { 
+    color: var(--maincolor); 
+} 
+
+.navbar a::after { 
+    content: ""; 
+    background-color: var(--maincolor); 
+    width: 0; 
+    position: absolute; 
+    height: 0.2rem; 
+    left: 0; 
+    margin-top: 0.5rem; 
+    top: 100%; 
+    transition: 0.5s; 
+} 
+
+.navbar a:hover::after { 
+    width: 100%; 
+} 
+
+#menu-bars { 
+    color: var(--textcolor); 
+    font-size: 2.5rem; 
+    cursor: pointer; 
+    margin-right: 1rem; 
+    display: none; 
+} 
+
+#menu-bars:hover { 
+    color: var(--maincolor); 
+} 
+
+.right-icons .btn { 
+    padding: 1rem; 
+    font-size: 1.7rem; 
+    color: var(--textcolor); 
+    border: 0.2rem solid var(--maincolor); 
+    text-decoration: none; 
+    cursor: pointer; 
+} 
+
+.right-icons .btn:hover { 
+    color: var(--maincolor); 
+}
+
+
