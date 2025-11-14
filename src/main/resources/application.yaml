@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: CarePLus-RegistrationsApplication
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/registration-data-20
+    username: root
+    password: Abdu1992$  # use env variable in prod
+    hikari:
+      maximum-pool-size: 10
+      leak-detection-threshold: 5000  # ms
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate.format_sql: true
+  hibernate:
+    ddl-auto: update
+    show-sql: true
+
+ar:
+  ssa-web:
+    url: http://localhost:8083/local-api/find/{ssn}
+  valid-states: Pennsylvania,New Jersey,New York,Delaware,Maryland
