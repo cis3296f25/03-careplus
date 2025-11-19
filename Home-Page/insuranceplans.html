@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Plans - CarePlus</title>
+
+    <script src="https://kit.fontawesome.com/c1df782baf.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+
+    <style>
+        /* Spinner styles */
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--maincolor);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+
+        /* Error message */
+        .error-message-plans {
+            color: #ff4757;
+            font-size: 1.6rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        /* Center content without an image */
+        .home {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 0;
+        }
+
+        .home-left-content {
+            text-align: left;
+        }
+
+        .home-left-content span {
+            font-size: 6rem;
+            color: #8dba8d;
+            font-weight: bolder;
+        }
+
+        .home-left-content h2 {
+            font-size: 2.8rem;
+            color: #2d5817;
+            margin: 1rem 0;
+        }
+
+        .home-left-content p {
+            font-size: 1.7rem;
+            color: #444;
+        }
+
+        #discoverBtn {
+            margin-top: 20px;
+            padding: 1rem 2rem;
+            font-size: 1.6rem;
+            background-color: #246f4f;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease;
+        }
+
+        #discoverBtn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Plan card fade-in animation */
+        .plan-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .plan-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+/* Insurance Plans Page Override */
+        .plans-hero {
+            background:
+                url(Images/insurancePlansCover.png),
+                linear-gradient(90deg, rgb(200, 213, 206) 0%, rgb(118, 172, 134) 100%, rgb(102, 156, 123) 100%);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="images/logo2.png" alt="Logo"></div>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="#plans">Plans</a>
+            <a href="index.html#contact-section">Contact</a>
+            <a href="JoinUs/joinUS.html" class="active">Join Us</a>
+        </nav>
+
+        <div class="right-icons">
+            <div id="menu-bars" class="fas fa-bars"></div>
+            <a href="login.html" class="btn">Log in</a>
+        </div>
+    </header>
+
+<div class="main-home plans-hero" id="plans-section">
+
+    <div class="home">
+        <div class="home-left-content">
+            <span>Discover Our Plans</span>
+            <h2>Find the right health plan<br> that fits your needs</h2>
+            <p>Click the button below to see available plans</p>
+            <button id="discoverBtn">Discover Plans</button>
+        </div>
+    </div>
+</div>
+
+<section class="reason" id="plans-list-section" style="display:none; flex-direction:column;">
+    <h1 style="text-align:center; width:100%; margin-bottom: 2rem; color:#1B3C0B;">Available Insurance Plans</h1>
+
+    <!-- Spinner -->
+    <div id="spinner" class="spinner" style="display:none;"></div>
+
+    <!-- Error message -->
+    <div id="plans-error" class="error-message-plans" style="display:none;"></div>
+
+    <!-- Container for plans -->
+    <div id="plans-container" style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem;"></div>
+</section>
+
+<script>
+    const discoverBtn = document.getElementById('discoverBtn');
+    const plansSection = document.getElementById('plans-list-section');
+    const plansContainer = document.getElementById('plans-container');
+    const spinner = document.getElementById('spinner');
+    const plansError = document.getElementById('plans-error');
+
+    // Placeholder plans data
+    const dummyPlans = [
+        {
+            name: "Basic Health Plan",
+            coverage: "Covers essential healthcare services",
+            premium: "$200/month"
+        },
+        {
+            name: "Standard Health Plan",
+            coverage: "Covers most medical services including specialists",
+            premium: "$350/month"
+        },
+        {
+            name: "Premium Health Plan",
+            coverage: "Comprehensive coverage including dental and vision",
+            premium: "$500/month"
+        }
+    ];
+
+    function fetchPlans() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const success = true; // Always succeed for now
+                if (success) {
+                    resolve(dummyPlans);
+                } else {
+                    reject("Failed to fetch plans. Please try again later.");
+                }
+            }, 1500);
+        });
+    }
+
+    discoverBtn.addEventListener('click', async () => {
+        plansSection.style.display = 'flex';
+        plansContainer.innerHTML = '';
+        plansError.style.display = 'none';
+        spinner.style.display = 'block';
+
+        try {
+            const plans = await fetchPlans();
+            spinner.style.display = 'none';
+
+            plans.forEach((plan, index) => {
+                const planCard = document.createElement('div');
+                planCard.classList.add('plan-card');
+                planCard.style.width = "300px";
+                planCard.style.padding = "1.5rem";
+                planCard.style.border = "1px solid #dce9dc";
+                planCard.style.borderRadius = "20px";
+                planCard.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
+                planCard.style.backgroundColor = "#f8fdf9";
+                planCard.style.textAlign = "center";
+
+                planCard.innerHTML = `
+                    <h2 style="color:#2a5c37;">${plan.name}</h2>
+                    <p style="font-size:1.4rem; color:#444;">${plan.coverage}</p>
+                    <p style="font-weight:bold; margin-top:1rem; font-size:1.6rem; color:#024024;">${plan.premium}</p>
+                `;
+                plansContainer.appendChild(planCard);
+
+                // Trigger fade-in animation with a slight stagger
+                setTimeout(() => {
+                    planCard.classList.add('show');
+                }, index * 150);
+            });
+        } catch (error) {
+            spinner.style.display = 'none';
+            plansError.style.display = 'block';
+            plansError.textContent = error;
+        }
+    });
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
