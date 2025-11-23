@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Multistep Form</title>
+
+   <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+   />
+
+
+   <link rel="stylesheet" href="dataCollection.css" />
+   <script src="datacollectionScript.js" defer></script>
+ </head>
+
+
+ <body>
+   <form class="form-wizard">
+     <h1>Case Creation</h1>
+
+
+     <div class="completed" hidden>
+       <h3>Sucessfull </h3>
+       <i class="fa-solid fa-check"></i>
+       <p> Your case number is...</p>
+     </div>
+
+
+     <div class="progress-container">
+       <div class=progress></div>
+       <ol>
+           <li class="current">ID</li>
+           <li class="current">Plan</li>
+           <li>Income</li>
+           <li>Education</li>
+           <li>Children</li>
+
+
+       </ol>
+     </div>
+
+
+
+
+     <div class="steps-container">
+
+
+       <div class="step">
+         <h3>Application ID</h3>
+
+
+         <div class="form-control">
+           <label for="ApplicationID">ID</label>
+           <input type="ID" id="ApplicationID" name="ApplicationID" required />
+         </div>
+
+
+       </div>
+
+
+       <div class="step">
+         <h3>Select a Plan</h3>
+
+
+         <div class="form-control">
+           <label for="plan">Choose a plan</label>
+           <input type="plan" id="plan" name="plan" required />
+         </div>
+
+
+       </div>
+
+
+       <div class="step">
+         <h3>Income</h3>
+
+
+         <div class="form-control">
+           <label for="Income">Income</label>
+           <input type="income" id="income" name="income" required />
+         </div>
+
+
+       </div>
+
+
+       <div class="step">
+         <h3>Education</h3>
+
+
+         <div class="form-control">
+           <label for="edu">Education</label>
+           <input type="education" id="education" name="education" required />
+         </div>
+
+
+       </div>
+
+
+       <div class="step">
+         <h3>Children</h3>
+
+
+         <div class="form-control">
+           <label for="Children">Number of children</label>
+           <input type="children" id="children" name="children" required />
+         </div>
+
+
+       </div>
+
+
+     </div>
+    
+     <div class="controls">
+       <button type="button" class="prev-btn">Back</button>
+       <button type="button" class="next-btn">Next</button>
+       <button type="submit" class="submit-btn">Submit</button>
+     </div>
+
+
+   </form>
+ </body>
+</html>
