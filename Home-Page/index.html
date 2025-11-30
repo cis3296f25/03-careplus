@@ -24,7 +24,7 @@
 
         <div class="right-icons">
             <div id="menu-bars" class="fas fa-bars"></div>
-            <a href="login.html" class="btn">Log in</a>
+            <a href="login.html" class="btn" id="authBtn">Log in</a>
         </div>
     </header>
 
@@ -101,8 +101,28 @@
   </div>
 </section>
 
-
-
     <script src="script.js"></script>
+    <script>
+        // Check if user is logged in and update button accordingly
+        window.addEventListener('DOMContentLoaded', function() {
+            const authBtn = document.getElementById('authBtn');
+            const isLoggedIn = localStorage.getItem('carePlusLoggedIn');
+            
+            if (isLoggedIn === 'true') {
+                authBtn.textContent = 'Log out';
+                authBtn.href = '#';
+                authBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm('Are you sure you want to log out?')) {
+                        localStorage.removeItem('carePlusLoggedIn');
+                        localStorage.removeItem('carePlusUserEmail');
+                        localStorage.removeItem('carePlusLoginTime');
+                        alert('You have been logged out successfully.');
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

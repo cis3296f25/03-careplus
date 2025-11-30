@@ -286,6 +286,11 @@
     </div>
 
     <script>
+        // Check if already logged in
+        if (localStorage.getItem('carePlusLoggedIn') === 'true') {
+            window.location.href = 'index.html';
+        }
+
         // Password toggle functionality
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
@@ -357,21 +362,40 @@
             }
 
             if (isValid) {
-                // Here you would typically send the login data to your backend
-                alert('Login successful! Need to implement backend logic!');
-                console.log('Email:', emailInput.value);
-                console.log('Password:', passwordInput.value);
-                console.log('Remember:', document.getElementById('remember').checked);
+                // Store login status in localStorage
+                localStorage.setItem('carePlusLoggedIn', 'true');
+                localStorage.setItem('carePlusUserEmail', emailInput.value);
+                localStorage.setItem('carePlusLoginTime', new Date().toISOString());
                 
-                // Example: Send to backend
-                // fetch('/api/login', {
-                //     method: 'POST',
-                //     headers: {'Content-Type': 'application/json'},
-                //     body: JSON.stringify({
-                //         email: emailInput.value,
-                //         password: passwordInput.value
-                //     })
-                // });
+                // Show success message
+                alert('Login successful! Redirecting to home page...');
+                
+                // Redirect to home page
+                window.location.href = 'index.html';
+                
+                // When backend is ready, use this instead:
+                /*
+                fetch('http://localhost:8080/api/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        email: emailInput.value,
+                        password: passwordInput.value
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.token) {
+                        localStorage.setItem('carePlusAuthToken', data.token);
+                        localStorage.setItem('carePlusLoggedIn', 'true');
+                        localStorage.setItem('carePlusUserEmail', emailInput.value);
+                        window.location.href = 'index.html';
+                    }
+                })
+                .catch(error => {
+                    alert('Login failed. Please try again.');
+                });
+                */
             }
         });
 
