@@ -15,16 +15,26 @@ function prevStep(step) {
 }
 
 function submitForm() {
+  const ssn = document.getElementById('ssn').value.trim();
+
+  const lastDigit = ssn.charAt(ssn.length - 1);
+  if (!/[0-5]/.test(lastDigit)) {
+    alert("SSN last digit must be between 0 and 5.");
+    return;
+  }
+
   const data = {
     fullName: document.getElementById('fullName').value,
     email: document.getElementById('email').value,
     gender: document.getElementById('gender').value,
     mobileNum: document.getElementById('mobileNum').value,
-    ssn: document.getElementById('ssn').value,
+    ssn: ssn,
     dob: document.getElementById('dob').value,
     state: document.getElementById('state').value
   };
 
-  console.log('Form Data Submitted:', data);
-  alert('Form submitted successfully! Check console for JSON data.');
+  console.log("Form Data Submitted:", data);
+  alert("Form submitted successfully!");
+
+  window.location.href = "/DataCollectionService/datacollecting.html";
 }
