@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eligibility Check</title>
+    <link rel="stylesheet" href="eligibility.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="title" id="inputSection">
+        <h1>Check Eligibility</h1>
+
+        <input type="number" id="caseInput" placeholder="Enter Case Number">
+        <button class="btn" onclick="showDemo()">Submit</button>
+    </div>
+
+    <div class="results hidden" id="resultsBox">
+        <h3>Eligibility Results</h3>
+        <p><strong>Case Number:</strong> <span id="caseNoResult"></span></p>
+        <p><strong>Plan Name:</strong> <span id="planResult"></span></p>
+        <p><strong>Plan Status:</strong> <span id="statusResult"></span></p>
+        <p><strong>Start Date:</strong> <span id="startResult"></span></p>
+        <p><strong>End Date:</strong> <span id="endResult"></span></p>
+        <p><strong>Benefit Amount:</strong> <span id="benefitResult"></span></p>
+        <p><strong>Denial Reason:</strong> <span id="denialResult"></span></p>
+    </div>
+
+</div>
+
+
+<script>
+function showDemo() {
+    let caseInput = document.getElementById("caseInput").value.trim();
+    if (!caseInput) {
+        alert("Please enter a case number.");
+        return;
+    }
+
+    // Fill demo values
+    document.getElementById("caseNoResult").textContent = caseInput;
+    document.getElementById("planResult").textContent = "SNAP";
+    document.getElementById("statusResult").textContent = "Approved";
+    document.getElementById("startResult").textContent = "01/10/2025";
+    document.getElementById("endResult").textContent = "12/31/2025";
+    document.getElementById("benefitResult").textContent = "$280/month";
+    document.getElementById("denialResult").textContent = "N/A";
+
+    // Hide left section
+    document.getElementById("inputSection").classList.add("hidden");
+
+    // Show results
+    let resultsBox = document.getElementById("resultsBox");
+    resultsBox.classList.remove("hidden");
+
+    // Smooth scroll to results
+    resultsBox.scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+
+</body>
+</html>
