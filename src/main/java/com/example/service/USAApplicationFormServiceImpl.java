@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
 import com.example.bindings.USACitizenApplication;
 import com.example.entity.USCitizenApplicationRegistrationEntity;
 import com.example.repository.ApplicationRegistrationRepository;
@@ -21,26 +22,44 @@ public class USAApplicationFormServiceImpl implements ApplicationRegistrationSer
     private RestTemplate temp;
 
     @Value("${ar.apiUrl.url}")
-    private String Url;
+    private String apiURL;
 
-    @Value("${ar.state}")
-    private String SearchForState;
+    @Value("${state}")
+    private String requiredState;
 
-    @Override
-    public Integer USRegistrationForm(USACitizenApplication inputs) {
+@Override
+public Integer USRegistrationForm(USACitizenApplication inputs) {
 
-        String apiUrl = "http://localhost:9091/SsaWebOperation/find/{ssn}";
-        ResponseEntity<String> isResponse = temp.exchange(apiUrl, HttpMethod.GET, null, String.class, inputs.getssn());
-        String usState = isResponse.getBody();
+    // TEMP FIX: skip calling SSA service
+    // String usState = temp.exchange(apiURL, HttpMethod.GET, null, String.class, inputs.getSsn()).getBody();
 
-        if (usState.equalsIgnoreCase(SearchForState)) {
-            USCitizenApplicationRegistrationEntity isEntity = new USCitizenApplicationRegistrationEntity();
-            BeanUtils.copyProperties(inputs, isEntity);
-            isEntity.setUsState(usState);
+    // Accept whatever state frontend sends for now
+    String usState = inputs.getUsState();
 
-            USCitizenApplicationRegistrationEntity savedEntity = isRepo.save(isEntity);
-            return savedEntity.getId();
+    // Check if user belongs to required state
+    if (usState != null && usState.equalsIgnoreCase(requiredState)) {
+
+        USCitizenApplicationRegistrationEntity entity = new USCitizenApplicationRegistrationEntity();
+
+        // Copy properties
+        BeanUtils.copyProperties(inputs, entity);
+
+        // Set state
+        entity.setUsState(usState);
+
+        // Convert dob String → LocalDateTime
+        try {
+            entity.setDob(java.time.LocalDateTime.parse(inputs.getDob() + "T00:00:00"));
+        } catch (Exception e) {
+            System.out.println("DOB conversion failed: " + e.getMessage());
         }
-        return 0;
+
+        // Save to DB
+        USCitizenApplicationRegistrationEntity saved = isRepo.save(entity);
+        return saved.getId();
     }
+
+    return 0;
+}
+
 }

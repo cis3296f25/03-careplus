@@ -1,23 +1,21 @@
 server:
   port: 8081
-  undertow:
-    decode-url: false   # or true, depending on what you need
 
 spring:
-  application:
-    name: CarePlus-ApplicationRegistration
   datasource:
-    url: jdbc:mysql:///jrtq2025-his-db
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jrtq2025_HIS_DB
     username: root
-    password: root
+    password: np142060
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
-      show-sql: true
+    show-sql: true
 
 ar:
   apiUrl:
     url: http://localhost:9091/SsaWebOperation/find/{ssn}
+
 state: Pennsylvania
