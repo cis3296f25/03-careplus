@@ -6,25 +6,30 @@
     <title>Health Insurance Website</title>
 
     <script src="https://kit.fontawesome.com/c1df782baf.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="header.css">
+
+    <!-- CORRECT absolute paths -->
+    <link rel="stylesheet" href="/Home-Page/style.css">
+    <link rel="stylesheet" href="/Home-Page/header.css">
+
 </head>
 
 <body>
     <header>
-        <div class="logo"><img src="images/logo2.png" alt="Logo"></div>
+        <div class="logo">
+            <img src="/Home-Page/Images/logo2.png" alt="Logo">
+        </div>
 
         <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="insuranceplans.html">Plans</a>
-            <a href="#contact-section">Contact</a>
-            <a href="JoinUs/joinUS.html" class="active">Join Us</a>
+            <a href="/Home-Page/index.html#home">Home</a>
+            <a href="/Home-Page/index.html#about">About</a>
+            <a href="/Home-Page/insuranceplans.html">Plans</a>
+            <a href="/Home-Page/index.html#contact-section">Contact</a>
+            <a href="/Home-Page/JoinUs/joinUS.html" class="active">Join Us</a>
         </nav>
 
         <div class="right-icons">
             <div id="menu-bars" class="fas fa-bars"></div>
-            <a href="login.html" class="btn" id="authBtn">Log in</a>
+            <a href="/Home-Page/login.html" class="btn" id="authBtn">Log in</a>
         </div>
     </header>
 
@@ -33,18 +38,17 @@
             <div class="home-left-content">
                 <span>Welcome to CarePlus</span>
 
-                <h2>We Care About Your Health<br>  and Your Future  </h2>
-                    <p class="lorem">
-                        <a href="insuranceplans.html" style="text-decoration:none; color:inherit;">
-                            Discover plans
-                            <img src="images/external-link.png" alt="external link icon" class="external-icon">
-                        </a>
-                    </p>
+                <h2>We Care About Your Health<br> and Your Future</h2>
+
+                <p class="lorem">
+                    <a href="/Home-Page/insuranceplans.html" style="text-decoration:none; color:inherit;">
+                        Discover plans
+                        <img src="/Home-Page/Images/external-link.png" alt="external link icon" class="external-icon">
+                    </a>
+                </p>
 
             </div>
-            <div class="home-right-content">
-
-            </div>
+            <div class="home-right-content"></div>
         </div>
     </div>
 
@@ -61,23 +65,22 @@
   </div>
 </section>
 
-    <!------why choose us....--->
-
 <section class="reason">
     <div class="reason-one">
         <h2>Quick and Easy Enrollment</h2>
         <p>Our user-friendly platform lets you compare, register, and manage your plan in just a few clicks.</p>
     </div>
+
     <div class="reason-two">
         <h2>Transparent Pricing</h2>
         <p>No hidden fees or confusing terms. We make it easy to understand exactly what your plan covers before you sign up.</p>
     </div>
+
     <div class="reason-three">
         <h2>Personalized Coverage</h2>
         <p>Every individual and family has unique healthcare needs. CarePlus helps you find plans tailored to your lifestyle, budget, and medical priorities.</p>
     </div>
 </section>
-
 
 <section id="contact-section">
   <div class="contact-container">
@@ -96,33 +99,37 @@
     </div>
 
     <div class="contact-right">
-      <img src="Images/ContactUs.png" alt="contact illustration">
+      <!-- FIXED PATH -->
+      <img src="/Home-Page/Images/ContactUs.png" alt="contact illustration">
     </div>
   </div>
 </section>
 
-    <script src="script.js"></script>
-    <script>
-        // Check if user is logged in and update button accordingly
-        window.addEventListener('DOMContentLoaded', function() {
-            const authBtn = document.getElementById('authBtn');
-            const isLoggedIn = localStorage.getItem('carePlusLoggedIn');
-            
-            if (isLoggedIn === 'true') {
-                authBtn.textContent = 'Log out';
-                authBtn.href = '#';
-                authBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (confirm('Are you sure you want to log out?')) {
-                        localStorage.removeItem('carePlusLoggedIn');
-                        localStorage.removeItem('carePlusUserEmail');
-                        localStorage.removeItem('carePlusLoginTime');
-                        alert('You have been logged out successfully.');
-                        window.location.reload();
-                    }
-                });
-            }
-        });
-    </script>
+<!-- FIXED SCRIPT PATH -->
+<script src="/Home-Page/script.js"></script>
+
+<script>
+    // Check if user is logged in and update button accordingly
+    window.addEventListener('DOMContentLoaded', function() {
+        const authBtn = document.getElementById('authBtn');
+        const isLoggedIn = localStorage.getItem('carePlusLoggedIn');
+        
+        if (isLoggedIn === 'true') {
+            authBtn.textContent = 'Log out';
+            authBtn.href = '#';
+            authBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to log out?')) {
+                    localStorage.removeItem('carePlusLoggedIn');
+                    localStorage.removeItem('carePlusUserEmail');
+                    localStorage.removeItem('carePlusLoginTime');
+                    alert('You have been logged out successfully.');
+                    window.location.reload();
+                }
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
