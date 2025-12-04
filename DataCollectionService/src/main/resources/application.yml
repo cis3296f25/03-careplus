@@ -6,9 +6,9 @@ spring:
     name: DataCollectionService
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/datacollections
+    url: jdbc:mysql://localhost:3306/datacollection
     username: root
-    password: Abdu1992$
+    password: np142060
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect

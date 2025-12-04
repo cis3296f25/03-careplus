@@ -19,7 +19,7 @@ import lombok.Data;
 public class PlanOptionsEntity {
 
 
-    @Id // Marks this field as the primary key
+    @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer planId;
     @Column(length =30)

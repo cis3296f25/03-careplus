@@ -10,11 +10,12 @@ const submitButton = form.querySelector(".submit-btn");
 document.documentElement.style.setProperty("--steps", stepIndicators.length);
 
 let currentStep = 0;
+let globalCaseNo = null;
+let globalAppId = null;
 
 const updateProgress = () => {
   let width = currentStep / (steps.length - 1);
   progress.style.transform = `scaleX(${width})`;
-
   stepsContainer.style.height = steps[currentStep].offsetHeight + "px";
 
   stepIndicators.forEach((indicator, index) => {
@@ -42,21 +43,91 @@ const isValidStep = () => {
   return [...fields].every((field) => field.reportValidity());
 };
 
-//* event listeners
+async function safeResponse(res) {
+  const text = await res.text();
+  if (!res.ok) throw new Error(text);
+  try { return JSON.parse(text); }
+  catch { return text; }
+}
+
+async function generateCaseNo(appId) {
+  const res = await fetch(`http://localhost:8082/data/caseNo/${appId}`, {
+    method: "POST"
+  });
+  return safeResponse(res);
+}
+
+async function savePlan(caseNo, planName, appId) {
+  const body = { caseNo, planId: 1, appId, planName };
+  const res = await fetch("http://localhost:8082/data/update", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+  return safeResponse(res);
+}
+
+async function saveIncome(caseNo, income) {
+  const res = await fetch("http://localhost:8082/data/saveIncome", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      incomeId: null,
+      caseNo,
+      empIncome: parseFloat(income),
+      propertyIncome: 0
+    })
+  });
+  return safeResponse(res);
+}
+
+async function saveEducation(caseNo, qualification) {
+  const res = await fetch("http://localhost:8082/data/saveEducation", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      educationId: null,
+      caseNo,
+      highestDegree: qualification,
+      completionYear: 0
+    })
+  });
+  return safeResponse(res);
+}
+
+async function saveChildren(caseNo, count) {
+  const num = parseInt(count);
+  if (isNaN(num) || num <= 0) return;
+
+  const childrenList = [];
+  for (let i = 1; i <= num; i++) {
+    childrenList.push({
+      caseNo,
+      childId: i,
+      childDOB: "2020-01-01",
+      childSSN: 111111111 + i
+    });
+  }
+
+  const res = await fetch("http://localhost:8082/data/saveChildren", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(childrenList)
+  });
+
+  return safeResponse(res);
+}
 
 const inputs = form.querySelectorAll("input, textarea");
 inputs.forEach((input) =>
   input.addEventListener("focus", (e) => {
     const focusedElement = e.target;
-
-
     const focusedStep = [...steps].findIndex((step) =>
       step.contains(focusedElement)
     );
 
     if (focusedStep !== -1 && focusedStep !== currentStep) {
       if (!isValidStep()) return;
-
       currentStep = focusedStep;
       updateProgress();
     }
@@ -66,28 +137,44 @@ inputs.forEach((input) =>
   })
 );
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault(); // prevent form submission
-
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
   if (!form.checkValidity()) return;
-
-  const formData = new FormData(form);
-
-  // send the data somewhere
-  console.log(Object.fromEntries(formData));
 
   submitButton.disabled = true;
   submitButton.textContent = "Submitting...";
 
-  // mimic a server request
-  setTimeout(() => {
+  globalAppId = parseInt(document.getElementById("ApplicationID").value);
+  if (isNaN(globalAppId)) {
+    alert("Application ID must be a number");
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit";
+    return;
+  }
+
+  const planName = document.getElementById("plan").value;
+  const income = document.getElementById("income").value;
+  const edu = document.getElementById("education").value;
+  const children = document.getElementById("children").value;
+
+  try {
+    globalCaseNo = await generateCaseNo(globalAppId);
+    await savePlan(globalCaseNo, planName, globalAppId);
+    await saveIncome(globalCaseNo, income);
+    await saveEducation(globalCaseNo, edu);
+    await saveChildren(globalCaseNo, children);
+
     form.querySelector(".completed").hidden = false;
-  }, 3000);
+    form.querySelector(".completed p").textContent =
+      "Your case number is " + globalCaseNo;
+
+  } catch (error) {
+    alert("Error sending data to backend: " + error);
+  }
 });
 
 prevButton.addEventListener("click", (e) => {
-  e.preventDefault(); // prevent form submission
-
+  e.preventDefault();
   if (currentStep > 0) {
     currentStep--;
     updateProgress();
@@ -95,10 +182,8 @@ prevButton.addEventListener("click", (e) => {
 });
 
 nextButton.addEventListener("click", (e) => {
-  e.preventDefault(); // prevent form submission
-
+  e.preventDefault();
   if (!isValidStep()) return;
-
   if (currentStep < steps.length - 1) {
     currentStep++;
     updateProgress();
