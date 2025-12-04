@@ -1,10 +1,10 @@
-body {
+.eligibility-page {
     background: linear-gradient(90deg, rgb(200,213,206) 0%, rgb(118,172,134) 100%);
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
-.container {
+.eligibility-page .container {
     display: flex;
     justify-content: space-between;
     padding: 10% 12%;
@@ -12,17 +12,17 @@ body {
 }
 
 /* Left side */
-.title {
+.eligibility-page .title {
     width: 40%;
 }
 
-h1 {
+.eligibility-page h1 {
     font-size: 45px;
     color: rgb(12, 57, 12);
     margin-bottom: 20px;
 }
 
-input {
+.eligibility-page input {
     display: block;
     width: 260px;
     padding: 10px;
@@ -31,7 +31,7 @@ input {
     border-radius: 5px;
 }
 
-.btn {
+.eligibility-page .btn {
     border: none;
     border-radius: 5px;
     background-color: rgb(66, 148, 66);
@@ -40,12 +40,12 @@ input {
     cursor: pointer;
 }
 
-.btn:hover {
+.eligibility-page .btn:hover {
     background-color: rgb(57, 131, 57);
 }
 
 /* Right side results */
-.results {
+.eligibility-page .results {
     width: 40%;
     background: rgba(255,255,255,0.6);
     padding: 25px 20px;
@@ -54,17 +54,28 @@ input {
     box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
 }
 
-.results h3 {
+.eligibility-page .results h3 {
     font-size: 28px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.results p {
+.eligibility-page .results p {
     margin: 10px 0;
     font-size: 18px;
 }
 
 .hidden {
     display: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(90deg, rgb(200,213,206) 0%, rgb(118,172,134) 100%);
+    margin: 0;
+    font-family: Arial, sans-serif;
 }

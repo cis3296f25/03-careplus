@@ -19,13 +19,17 @@ import com.example.demo.bindings.DataCollectionEducationInputs;
 import com.example.demo.bindings.DataCollectionIncomeInputs;
 import com.example.demo.bindings.PlanSelectionOptionsInputs;
 import com.example.demo.service.DataCollectionInterfaceService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/data")
 @Tag(name="DC-API", description="Data Collection Module")
 public class DataCollectionController {
+
 	@Autowired
 private DataCollectionInterfaceService dcmanageService;
 	@GetMapping("/planNames")
@@ -69,8 +73,9 @@ private DataCollectionInterfaceService dcmanageService;
 		Integer caseNo = dcmanageService.saveChildrenDetails(children);
 		return new ResponseEntity<Integer>(caseNo,HttpStatus.OK);
 	}
-	@GetMapping("/report-Details")
+	@GetMapping("/report-Details/{caseNo}")
 	public ResponseEntity<DCFeedBackReportInputs> showSummaryReport(@PathVariable Integer caseNo){
+
 		//use service
         DCFeedBackReportInputs report = dcmanageService.showDcSummary(caseNo);
         return new ResponseEntity<DCFeedBackReportInputs>(report,HttpStatus.OK);

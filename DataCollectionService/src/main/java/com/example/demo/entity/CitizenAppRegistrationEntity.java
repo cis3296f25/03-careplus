@@ -1,64 +1,61 @@
 package com.example.demo.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "CITIZEN_APPLICATIONS")
+@Table(name = "us_citizen")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CitizenAppRegistrationEntity {
 
-	@Id
-    @SequenceGenerator(name = "gen1_seq", sequenceName = "app_id_seq", initialValue = 1000, allocationSize = 1)
-    @GeneratedValue(generator = "gen1_seq", strategy = GenerationType.SEQUENCE)
+    @Id
+    @Column(name = "id")
     private Integer appId;
 
-    @Column(length = 30)
+    @Column(name = "full_name")
     private String fullName;
 
-    @Column(length = 30)
+    @Column(name = "email")
     private String email;
 
-    @Column(length = 30)
+    @Column(name = "gender")
     private String gender;
 
-    private Long mobile_num; // Assuming phone number should be Long, based on typical usage
+    @Column(name = "phone_number")
+    private Long mobileNum;
 
-    private Long ssn; // Assuming SSN should be Long
+    @Column(name = "ssn")
+    private Long ssn;
 
+    @Column(name = "us_state")
     private String stateName;
 
-    private LocalDate dob;
+    @Column(name = "dob")
+    private LocalDateTime dob;
 
-    @Column(length = 30)
+    @Column(name = "created")
     private String createdBy;
 
-    @Column(length = 30)
+    @Column(name = "updated")
     private String updatedBy;
 
-    @Column(updatable = false)
     @CreationTimestamp
-    private LocalDate creationDate;
+    @Column(name = "create_date_time", updatable = false)
+    private LocalDateTime creationDate;
 
-    @Column(insertable = false)
     @UpdateTimestamp
-    private LocalDate updationDate;
-
-//    public void setStateName(String stateName) {
-//        this.stateName = stateName;
-//    }
-
+    @Column(name = "update_date_time", insertable = false)
+    private LocalDateTime updationDate;
 }
