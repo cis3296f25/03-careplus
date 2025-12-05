@@ -174,6 +174,7 @@
     const plansContainer = document.getElementById('plans-container');
     const spinner = document.getElementById('spinner');
     const plansError = document.getElementById('plans-error');
+    let plansLoaded = false;
 
     // Placeholder plans data
     const dummyPlans = [
@@ -222,15 +223,20 @@
 
     discoverBtn.addEventListener('click', async () => {
         plansSection.style.display = 'flex';
-        plansContainer.innerHTML = '';
         plansError.style.display = 'none';
+
+        //Prevent duplicate calls
+        if(plansLoaded) return;
+
         spinner.style.display = 'block';
+        plansContainer.innerHTML = '';
 
         try {
             const plans = await fetchPlans();
             spinner.style.display = 'none';
 
             plans.forEach((plan, index) => {
+                const approvalStatus = Math.random() < 0.5 ? "Accepted" : "Rejected";
                 const planCard = document.createElement('div');
                 planCard.classList.add('plan-card');
                 planCard.style.width = "300px";
@@ -245,6 +251,9 @@
                     <h2 style="color:#2a5c37;">${plan.name}</h2>
                     <p style="font-size:1.4rem; color:#444;">${plan.coverage}</p>
                     <p style="font-weight:bold; margin-top:1rem; font-size:1.6rem; color:#024024;">${plan.premium}</p>
+                    <p style="font-size:1.4rem; margin-top:1rem; color:${approvalStatus === "Accepted" ? "#2d7a32" : "#b32525"};">
+                        Status: <strong>${approvalStatus}</strong>
+                    </p>
                 `;
                 plansContainer.appendChild(planCard);
 
@@ -253,6 +262,7 @@
                     planCard.classList.add('show');
                 }, index * 150);
             });
+            plansLoaded = true;
         } catch (error) {
             spinner.style.display = 'none';
             plansError.style.display = 'block';
