@@ -24,6 +24,10 @@ import com.example.demo.service.IUserMgmtService;
 @RestController
 @RequestMapping("/user-api")
 public class UserMgmtOperationsController {
+	/*This Spring Boot REST controller (UserMgmtOperationsController) provides API endpoints for managing user accounts. 
+	It handles creating new users, activating accounts, logging in, listing all users, searching by ID or email/name, 
+	updating user details, deleting users, changing account status, and recovering passwords. Each endpoint calls 
+	the corresponding service method in IUserMgmtService and returns a ResponseEntity with the result or an error message. */
 	@Autowired
 	private IUserMgmtService userService;
 
